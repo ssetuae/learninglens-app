@@ -3,127 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearningLens - Shining Star Education</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>LearningLens - AI-driven Diagnostic System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #4a6fa5;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .feature {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .feature h3 {
+            color: #4a6fa5;
+            margin-top: 0;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <header>
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                <i class="fas fa-brain me-2"></i>LearningLens
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
-                    </li>
-                    {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
+            <h1>LearningLens</h1>
+            <p class="tagline">Illuminating Educational Pathways for K-12 Students</p>
+            <p>AI-driven diagnostic and recommendation system for Shining Star Education Training LLC</p>
         </div>
-    </nav>
+    </header>
 
-    <div class="container mt-4">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
-        <div class="jumbotron p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">LearningLens</h1>
-                <p class="col-md-8 fs-4">Illuminating pathways to personalized educational excellence through AI-driven insights</p>
-                <p class="lead">
-                    Discover your child's unique learning style, cognitive strengths, and ideal educational pathway with our comprehensive AI-driven diagnostic system.
-                </p>
-                {% if not current_user.is_authenticated %}
-                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Get Started</a>
-                {% else %}
-                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
-                {% endif %}
+    <div class="container">
+        <div class="features">
+            <div class="feature">
+                <h3>Comprehensive Assessment</h3>
+                <p>Age-appropriate questionnaires for K-12 students that evaluate learning styles, behaviors, cognitive strengths, and interests.</p>
+            </div>
+            <div class="feature">
+                <h3>Advanced Analysis</h3>
+                <p>Sophisticated algorithms determine learning styles, personal traits, and interest areas with detailed insights.</p>
+            </div>
+            <div class="feature">
+                <h3>Personalized Reports</h3>
+                <p>Separate engaging reports for students, parents, and teachers with actionable recommendations.</p>
+            </div>
+            <div class="feature">
+                <h3>Mathematics Pathway</h3>
+                <p>Specialized Abacus & Vedic Math pathways for students with mathematical aptitude.</p>
+            </div>
+            <div class="feature">
+                <h3>Career Guidance</h3>
+                <p>Age-appropriate career recommendations aligned with student strengths and interests.</p>
+            </div>
+            <div class="feature">
+                <h3>Global Exam Recommendations</h3>
+                <p>Tailored suggestions for globally available examinations and aptitude tests.</p>
             </div>
         </div>
 
-        <div class="row mb-5">
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-brain fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">Learning Style Analysis</h3>
-                        <p class="card-text">Identify your child's unique learning style, cognitive strengths, and behavioral patterns through our comprehensive assessment.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-road fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">Personalized Pathways</h3>
-                        <p class="card-text">Receive tailored learning pathways, course recommendations, and educational strategies based on your child's unique profile.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">Comprehensive Reports</h3>
-                        <p class="card-text">Access detailed reports for students, parents, and teachers with actionable insights and recommendations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-5">
-            <div class="col-md-6">
-                <h2>Why Choose LearningLens?</h2>
-                <ul class="list-group list-group-flush mb-4">
-                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> AI-driven analysis of learning styles and cognitive strengths</li>
-                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Personalized course recommendations and learning pathways</li>
-                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Mathematics pathway with Abacus & Vedic Math options</li>
-                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Global examination recommendations tailored to student profiles</li>
-                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Comprehensive reports for students, parents, and teachers</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <img src="https://via.placeholder.com/600x400?text=LearningLens+Visualization" alt="LearningLens Visualization" class="img-fluid rounded">
-            </div>
+        <div style="text-align: center; margin: 3rem 0;">
+            <h2>Deployment Successful!</h2>
+            <p>This minimal version confirms that the LearningLens application is properly deployed on Render.</p>
         </div>
     </div>
 
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Shining Star Education Training LLC</h5>
-                    <p>Providing innovative educational solutions in Abu Dhabi, UAE</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p>&copy; 2025 Shining Star Education. All rights reserved.</p>
-                </div>
-            </div>
+            <p>&copy; 2025 Shining Star Education Training LLC. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
