@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Insight Report - Shining Star Education</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #ff9642;
+            --accent-color: #47b8e0;
+            --light-color: #f5f7fa;
+            --dark-color: #333;
+            --success-color: #5cb85c;
+            --warning-color: #f0ad4e;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .logo {
+            max-width: 200px;
+            margin-bottom: 15px;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 0.5em;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+        }
+        
+        h4 {
+            font-size: 1.2em;
+        }
+        
+        p {
+            margin-bottom: 1em;
+        }
+        
+        .highlight {
+            background-color: rgba(74, 111, 165, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .highlight h3 {
+            margin-top: 0;
+        }
+        
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .comparison-card {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .alignment-card {
+            background-color: rgba(92, 184, 92, 0.1);
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .difference-card {
+            background-color: rgba(240, 173, 78, 0.1);
+            border-left: 4px solid var(--warning-color);
+        }
+        
+        .insight-card {
+            background-color: rgba(74, 111, 165, 0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .comparison-card h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        .comparison-card ul {
+            padding-left: 20px;
+        }
+        
+        .comparison-card li {
+            margin-bottom: 10px;
+        }
+        
+        .learning-style-section {
+            margin: 30px 0;
+        }
+        
+        .learning-style-card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .learning-style-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .strategies-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .strategies-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .strategies-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .strategies-list li:before {
+            content: "✓";
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .report-footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #e87f2f;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .comparison-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo-placeholder.png" alt="Shining Star Education" class="logo">
+            <h1>Parent Insight Report</h1>
+            <p>Understanding Your Child's Learning Profile</p>
+            <p><strong>Report ID:</strong> {{ report_id }} | <strong>Date:</strong> {{ date }}</p>
+        </header>
+        
+        <section>
+            <h2>About This Report</h2>
+            <p>Dear Parent of {{ student.name }},</p>
+            <p>Thank you for participating in our diagnostic assessment. This report provides insights into your child's learning profile based on their responses to our assessment, and compares these results with your own perceptions of your child's learning preferences and behaviors.</p>
+            <p>Understanding these similarities and differences can help you better support your child's educational journey and collaborate more effectively with their teachers.</p>
+            
+            <div class="highlight">
+                <h3>How to Use This Report</h3>
+                <p>This report is designed to provide insights, not labels. The goal is to help you understand your child's unique learning profile and how you can support their educational journey. We recommend:</p>
+                <ul>
+                    <li>Discussing these insights with your child in a positive, supportive way</li>
+                    <li>Sharing relevant information with teachers to help them better support your child</li>
+                    <li>Using the recommended strategies to enhance learning at home</li>
+                    <li>Scheduling a follow-up consultation with our academic advisors to discuss next steps</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Learning Profile Summary</h2>
+            
+            <div class="chart-container">
+                <h3>Learning Dimension Scores</h3>
+                <img src="data:image/png;base64,{{ charts.dimension_radar }}" alt="Learning Dimension Radar Chart">
+                <p>This chart shows your child's scores across different learning dimensions based on their assessment responses.</p>
+            </div>
+            
+            <div class="learning-style-section">
+                <h3>Primary Learning Style: {{ results.learning_styles.primary|title }}</h3>
+                <div class="learning-style-card">
+                    <h4>What this means:</h4>
+                    <p>{{ results.learning_styles.description }}</p>
+                    
+                    <h4>Ideal Learning Environment:</h4>
+                    <p>{{ results.learning_styles.ideal_environment }}</p>
+                    
+                    <h4>Recommended Learning Strategies:</h4>
+                    <ul class="strategies-list">
+                        {% for strategy in results.learning_styles.strategies %}
+                        <li>{{ strategy }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Key Traits</h3>
+            <p>Based on the assessment, your child demonstrates these key traits:</p>
+            <ul>
+                {% for trait in results.traits.top_traits %}
+                <li><strong>{{ trait|title }}:</strong> {{ results.traits.descriptions[loop.index0] }}</li>
+                {% endfor %}
+            </ul>
+            
+            <h3>Areas of Interest</h3>
+            <p>Your child showed particular interest in these areas:</p>
+            <ul>
+                {% for interest in results.interests.top_interests %}
+                <li><strong>{{ interest|title }}:</strong> {{ results.interests.descriptions[loop.index0] }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Parent-Child Comparison</h2>
+            <p>Before your child took the assessment, you answered questions about how you perceive their learning preferences and behaviors. Here's how your perceptions compare with your child's actual responses:</p>
+            
+            <div class="comparison-section">
+                <div class="comparison-card alignment-card">
+                    <h3>Where You're Aligned</h3>
+                    <ul>
+                        {% for alignment in comparison.alignments %}
+                        <li>{{ alignment }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="comparison-card difference-card">
+                    <h3>Where You See Things Differently</h3>
+                    <ul>
+                        {% for difference in comparison.differences %}
+                        <li>{{ difference }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="comparison-card insight-card">
+                <h3>Insights for Parents</h3>
+                <ul>
+                    {% for insight in comparison.insights %}
+                    <li>{{ insight }}</li>
+                    {% endfor %}
+                </ul>
+                <p>Remember that differences in perception are normal and can be valuable opportunities for growth and understanding. These insights can help you better support your child's unique learning journey.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Recommended Next Steps</h2>
+            
+            <h3>Courses That Match Your Child's Profile</h3>
+            <p>Based on your child's learning profile, we recommend these Shining Star Education courses:</p>
+            <ul>
+                <li><strong>{{ results.recommended_courses[0].title }}</strong> - {{ results.recommended_courses[0].description }}</li>
+                {% if results.recommended_courses|length > 1 %}
+                <li><strong>{{ results.recommended_courses[1].title }}</strong> - {{ results.recommended_courses[1].description }}</li>
+                {% endif %}
+                {% if results.recommended_courses|length > 2 %}
+                <li><strong>{{ results.recommended_courses[2].title }}</strong> - {{ results.recommended_courses[2].description }}</li>
+                {% endif %}
+            </ul>
+            
+            <h3>Supporting Your Child at Home</h3>
+            <p>Consider these strategies to support your child's learning based on their profile:</p>
+            <ul>
+                <li>Create learning environments that align with their {{ results.learning_styles.primary }} learning style</li>
+                <li>Encourage activities that build on their strengths in {{ results.traits.top_traits[0] }} and {{ results.traits.top_traits[1] }}</li>
+                <li>Explore resources related to their interests in {{ results.interests.top_interests[0] }} and {{ results.interests.top_interests[1] }}</li>
+                <li>Discuss potential career paths in fields related to their interests and strengths</li>
+            </ul>
+            
+            <div class="highlight">
+                <h3>Next Steps</h3>
+                <p>We recommend scheduling a free consultation with one of our academic advisors to discuss these results in more detail and develop a personalized learning plan for your child.</p>
+                <a href="#" class="cta-button">Book a Free Consultation</a>
+            </div>
+        </section>
+        
+        <div class="report-footer">
+            <p>This report was generated by Shining Star Education's AI-Driven Diagnostic Program.</p>
+            <p>© {{ date|slice:"0:4" }} Shining Star Education Training LLC. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

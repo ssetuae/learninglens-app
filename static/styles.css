@@ -1,0 +1,210 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.jumbotron {
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card {
+    border-left: 4px solid #007bff;
+}
+
+.dashboard-card-alt {
+    border-left: 4px solid #28a745;
+}
+
+.dashboard-card-warning {
+    border-left: 4px solid #ffc107;
+}
+
+.dashboard-stats {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.admin-sidebar {
+    min-height: calc(100vh - 56px);
+    background-color: #343a40;
+    padding-top: 20px;
+}
+
+.admin-sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.admin-sidebar .nav-link:hover {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar .nav-link.active {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.admin-sidebar .nav-link i {
+    margin-right: 0.5rem;
+}
+
+.admin-content {
+    padding: 20px;
+}
+
+.assessment-status-pending {
+    color: #ffc107;
+}
+
+.assessment-status-in-progress {
+    color: #17a2b8;
+}
+
+.assessment-status-completed {
+    color: #28a745;
+}
+
+.report-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 0.3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.report-section h3 {
+    color: #007bff;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.learning-style-chart {
+    height: 300px;
+    margin-bottom: 1.5rem;
+}
+
+.badge-learning-style {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.pathway-step {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 1.5rem;
+}
+
+.pathway-step:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.pathway-step:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    width: 2px;
+    height: calc(100% + 10px);
+    background-color: #007bff;
+}
+
+.pathway-step:last-child:after {
+    display: none;
+}
+
+.questionnaire-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 0.3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.question-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.question-item:last-child {
+    border-bottom: none;
+}
+
+.question-text {
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.answer-options {
+    margin-left: 1.5rem;
+}
+
+.login-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-logo i {
+    font-size: 3rem;
+    color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .admin-sidebar {
+        min-height: auto;
+    }
+    
+    .pathway-step {
+        padding-left: 25px;
+    }
+    
+    .pathway-step:before {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .pathway-step:after {
+        left: 7px;
+    }
+}

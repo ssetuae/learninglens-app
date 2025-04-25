@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: learninglens
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:application
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: learninglens-db
+          property: connectionString
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: ADMIN_EMAIL
+        value: helpdesk@shiningstaronline.com
+    healthCheckPath: /
+    autoDeploy: true
+
+databases:
+  - name: learninglens-db
+    databaseName: learninglens
+    user: learninglens_user
+    plan: starter
